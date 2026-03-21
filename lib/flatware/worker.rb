@@ -9,9 +9,9 @@ module Flatware
     attr_reader :sink, :runner, :id
 
     def initialize(id, runner, sink_endpoint)
-      @id       = id
-      @runner   = runner
-      @sink     = DRbObject.new_with_uri sink_endpoint
+      @id = id
+      @runner = runner
+      @sink = DRbObject.new_with_uri sink_endpoint
       Flatware::Sink.client = @sink
     end
 

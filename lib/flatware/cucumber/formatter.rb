@@ -25,8 +25,8 @@ module Flatware
         # FIXME: can we sneak the sink in through the config?
         config.on_event :test_case_finished, &method(:on_test_case_finished)
         config.on_event :test_step_finished, &method(:on_test_step_finished)
-        config.on_event :test_run_finished,  &method(:on_test_run_finished)
-        config.on_event :step_activated,     &method(:on_step_activated)
+        config.on_event :test_run_finished, &method(:on_test_run_finished)
+        config.on_event :step_activated, &method(:on_step_activated)
         reset
       end
 

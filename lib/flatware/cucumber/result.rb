@@ -5,7 +5,7 @@ module Flatware
 
       def initialize(progress)
         @progress = progress
-        @worker   = ENV.fetch("TEST_ENV_NUMBER", 0).to_i
+        @worker = ENV.fetch("TEST_ENV_NUMBER", 0).to_i
       end
 
       class << self
