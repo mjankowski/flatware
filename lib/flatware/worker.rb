@@ -46,7 +46,7 @@ module Flatware
       sink.finished job
     rescue Interrupt
       want_to_quit!
-    rescue StandardError => e
+    rescue => e
       Flatware.log e
       job.failed!
       sink.finished job
