@@ -71,7 +71,7 @@ module Flatware
             return "" unless results.any?
 
             status_counts = STATUSES.map do |status|
-              count = results.select(&with_status(status)).size
+              count = results.count(&with_status(status))
               format_string "#{count} #{status}", status if count.positive?
             end.compact.join ", "
 
