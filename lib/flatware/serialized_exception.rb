@@ -28,7 +28,7 @@ module Flatware
 
   class SerializedClass
     attr_reader :name
-    alias to_s name
+    alias_method :to_s, :name
     def initialize(name)
       @name = name
     end
