@@ -21,7 +21,7 @@ module Flatware
 
     def self.ps
       args = ["-o", members.join(",")]
-      args += { "Darwin" => %w[-c] }.fetch(Etc.uname.fetch(:sysname), [])
+      args += {"Darwin" => %w[-c]}.fetch(Etc.uname.fetch(:sysname), [])
 
       IO
         .popen(["ps", *args])

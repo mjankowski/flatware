@@ -62,7 +62,7 @@ module Flatware
       end
 
       def signal_message(signal)
-        formatter.message(Message.new(format(<<~MESSAGE, { cld: "A worker died", int: "Interrupted" }.fetch(signal))))
+        formatter.message(Message.new(format(<<~MESSAGE, {cld: "A worker died", int: "Interrupted"}.fetch(signal))))
 
           %s!
 

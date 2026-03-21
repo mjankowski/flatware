@@ -24,10 +24,10 @@ describe Flatware::RSpec::JobBuilder do
   context "when this run includes persisted examples" do
     let(:persisted_examples) do
       [
-        { example_id: "./fast_1_spec.rb[1]", run_time: "1 second" },
-        { example_id: "./fast_2_spec.rb[1]", run_time: "1 second" },
-        { example_id: "./fast_3_spec.rb[1]", run_time: "1 second" },
-        { example_id: "./slow_spec.rb[1]", run_time: "2 seconds" }
+        {example_id: "./fast_1_spec.rb[1]", run_time: "1 second"},
+        {example_id: "./fast_2_spec.rb[1]", run_time: "1 second"},
+        {example_id: "./fast_3_spec.rb[1]", run_time: "1 second"},
+        {example_id: "./slow_spec.rb[1]", run_time: "2 seconds"}
       ].map { |example| example.merge status: "passed" }
     end
 

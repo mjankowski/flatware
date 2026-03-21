@@ -38,7 +38,7 @@ module Flatware
 
       workers.times do |i|
         fork do
-          exec({ "TEST_ENV_NUMBER" => i.to_s }, command)
+          exec({"TEST_ENV_NUMBER" => i.to_s}, command)
         end
       end
       success = Process.waitall.all? { |_pid, status| status.success? }

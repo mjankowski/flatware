@@ -93,7 +93,7 @@ module Flatware
       def parse_example(example_id:, run_time:, **)
         seconds = run_time.match(/\d+(\.\d+)?/).to_s.to_f
         file_name = ::RSpec::Core::Example.parse_id(example_id).first
-        { seconds: seconds, file_name: file_name }
+        {seconds: seconds, file_name: file_name}
       end
 
       def round_robin(count, items)

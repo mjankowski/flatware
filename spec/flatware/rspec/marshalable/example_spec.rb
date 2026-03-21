@@ -23,7 +23,7 @@ describe Flatware::RSpec::Marshalable::Example do
           full_description: nil,
           location: nil,
           location_rerun_argument: nil,
-          metadata: { shared_group_inclusion_backtrace: [] }
+          metadata: {shared_group_inclusion_backtrace: []}
         )
       )
     ).fully_formatted(nil)

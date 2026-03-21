@@ -26,7 +26,7 @@ module Flatware
       attr_reader :events
 
       def initialize(events = {})
-        @events = { deprecation: [] }.merge(events)
+        @events = {deprecation: []}.merge(events)
       end
 
       def self.listen_for(event, &block)
