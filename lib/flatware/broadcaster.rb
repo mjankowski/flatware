@@ -23,7 +23,7 @@ module Flatware
       return super unless FORMATTER_MESSAGES.include? name
 
       formatters.select { |formatter| formatter.respond_to? name }
-                .each { |formatter| formatter.send name, *args }
+        .each { |formatter| formatter.send name, *args }
     end
 
     def respond_to_missing?(name, _include_all)

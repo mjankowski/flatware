@@ -21,8 +21,8 @@ Gem::Specification.new do |s|
     "README.md"
   ]
   s.files = `git ls-files -- lib`.each_line
-                                 .map(&:chomp)
-                                 .grep(/^((?!#{Regexp.union(runners)}).)*$/)
+    .map(&:chomp)
+    .grep(/^((?!#{Regexp.union(runners)}).)*$/)
   s.homepage = "http://github.com/briandunn/flatware"
 
   s.licenses = ["MIT"]
