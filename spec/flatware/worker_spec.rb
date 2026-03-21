@@ -1,32 +1,32 @@
 # frozen_string_literal: true
 
-require 'spec_helper'
+require "spec_helper"
 
 describe Flatware::Worker do
   let(:sink) { double Flatware::Sink::Server }
-  let(:runner) { double 'Runner', run: nil }
+  let(:runner) { double "Runner", run: nil }
   let(:sentinel) { instance_double(Flatware::Job, sentinel?: true) }
 
-  context 'when a worker is started' do
+  context "when a worker is started" do
     subject do
-      described_class.new(1, runner, 'druby://test:12345')
+      described_class.new(1, runner, "druby://test:12345")
     end
 
     before do
       allow(DRbObject).to receive(:new_with_uri).and_return(sink)
     end
 
-    it 'exits when dispatch is done' do
+    it "exits when dispatch is done" do
       allow(sink).to receive(:ready).and_return(sentinel)
       subject.listen
     end
 
-    context 'when we can not connect to the sink' do
+    context "when we can not connect to the sink" do
       before do
         allow(sink).to receive(:ready).and_raise(DRb::DRbConnError)
       end
 
-      it 'retries' do
+      it "retries" do
         worker = subject
         expect do
           worker.listen
@@ -35,8 +35,8 @@ describe Flatware::Worker do
       end
     end
 
-    context 'when attempted job raises' do
-      it 'marks the job as failed' do
+    context "when attempted job raises" do
+      it "marks the job as failed" do
         job = Flatware::Job.new
         allow(sink).to receive_messages(started: nil, finished: nil)
         allow(sink).to receive(:ready).and_return(job, sentinel)
@@ -49,14 +49,14 @@ describe Flatware::Worker do
     end
   end
 
-  describe '::spawn' do
-    describe 'hooks' do
+  describe "::spawn" do
+    describe "hooks" do
       after do
         Flatware.configuration.reset!
       end
 
-      it 'calls fork hooks' do
-        endpoint = 'drbunix:test'
+      it "calls fork hooks" do
+        endpoint = "drbunix:test"
         allow(sink).to receive_messages(
           before_fork: nil,
           after_fork: nil,

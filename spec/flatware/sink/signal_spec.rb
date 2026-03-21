@@ -1,4 +1,4 @@
-require 'spec_helper'
+require "spec_helper"
 
 describe Flatware::Sink::Signal do
   let(:formatter_queue) { Queue.new }
@@ -37,10 +37,10 @@ describe Flatware::Sink::Signal do
     signal_blocks.fetch(signal).call
   end
 
-  shared_examples_for 'a signal initiated shutdown' do |expected_message|
+  shared_examples_for "a signal initiated shutdown" do |expected_message|
     before do
       @messages = 2.times.map do
-        Timeout.timeout(1, StandardError, 'formatter did not receive within 1 sec') do
+        Timeout.timeout(1, StandardError, "formatter did not receive within 1 sec") do
           formatter_queue.pop.message
         end
       end
@@ -48,33 +48,33 @@ describe Flatware::Sink::Signal do
 
     attr_reader :messages
 
-    it 'aborts' do
+    it "aborts" do
       expect(subject).to have_received(:abort)
     end
 
-    it 'tells the formatter to emit the signal message' do
-      expect(messages).to match([match(expected_message), 'done.'])
+    it "tells the formatter to emit the signal message" do
+      expect(messages).to match([match(expected_message), "done."])
     end
 
-    it 'calls on_interrupt' do
+    it "calls on_interrupt" do
       expect(on_interrupt).to have_received(:call)
     end
 
-    it 'waits for workers' do
+    it "waits for workers" do
       expect(Process).to have_received(:waitall)
     end
   end
 
-  describe 'on SIGINT' do
+  describe "on SIGINT" do
     before do
-      send_signal('INT')
+      send_signal("INT")
     end
 
-    it_should_behave_like 'a signal initiated shutdown', 'Interrupted'
+    it_should_behave_like "a signal initiated shutdown", "Interrupted"
   end
 
-  describe 'on SIGCLD' do
-    context 'when a child failed' do
+  describe "on SIGCLD" do
+    context "when a child failed" do
       before do
         allow(Process).to receive(:wait2).and_return(
           [nil, double(success?: true)],
@@ -82,20 +82,20 @@ describe Flatware::Sink::Signal do
           nil
         )
 
-        send_signal('CLD')
+        send_signal("CLD")
       end
 
-      it_should_behave_like 'a signal initiated shutdown', 'A worker died'
+      it_should_behave_like "a signal initiated shutdown", "A worker died"
     end
 
-    context 'when a child has not failed' do
+    context "when a child has not failed" do
       before do
         allow(Process).to receive(:wait2).and_return nil
 
-        send_signal('CLD')
+        send_signal("CLD")
       end
 
-      it 'does nothing' do
+      it "does nothing" do
         expect(on_interrupt).to_not have_received(:call)
         expect(subject).to_not have_received(:abort)
         expect(formatter_queue).to be_empty

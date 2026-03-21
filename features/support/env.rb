@@ -1,16 +1,16 @@
 # frozen_string_literal: true
 
-require 'pathname'
-require 'etc'
+require "pathname"
+require "etc"
 
-$LOAD_PATH.unshift Pathname.new(__FILE__).dirname.join('../../lib').to_s
+$LOAD_PATH.unshift Pathname.new(__FILE__).dirname.join("../../lib").to_s
 
-ENV['PATH'] = [Pathname('.').expand_path.join('bin'), ENV.fetch('PATH', nil)].join(':')
+ENV["PATH"] = [Pathname(".").expand_path.join("bin"), ENV.fetch("PATH", nil)].join(":")
 
-require 'flatware/pid'
-require 'aruba/cucumber'
-require 'aruba/api'
-require 'rspec/expectations'
+require "flatware/pid"
+require "aruba/cucumber"
+require "aruba/api"
+require "rspec/expectations"
 
 World(Module.new do
   def max_workers
@@ -20,7 +20,7 @@ World(Module.new do
   end
 
   def travis?
-    ENV.key? 'TRAVIS'
+    ENV.key? "TRAVIS"
   end
 end)
 
@@ -54,10 +54,10 @@ After do |_scenario|
   end
 end
 
-After 'not @non-zero' do |scenario|
+After "not @non-zero" do |scenario|
   expect(flatware_process.exit_status).to eq 0 if flatware_process && (scenario.status == :passed)
 end
 
-After '@non-zero' do |scenario|
+After "@non-zero" do |scenario|
   expect(flatware_process.exit_status).to eq 1 if flatware_process && (scenario.status == :passed)
 end

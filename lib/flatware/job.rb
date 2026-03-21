@@ -12,11 +12,11 @@ module Flatware
     end
 
     def sentinel?
-      id == 'seppuku'
+      id == "seppuku"
     end
 
     def self.sentinel
-      new 'seppuku'
+      new "seppuku"
     end
   end
 end

@@ -1,5 +1,5 @@
-require 'spec_helper'
-require 'flatware/rspec/marshalable/example'
+require "spec_helper"
+require "flatware/rspec/marshalable/example"
 describe Flatware::RSpec::Marshalable::Example do
   def stub_execution_result(exception)
     instance_double(
@@ -12,7 +12,7 @@ describe Flatware::RSpec::Marshalable::Example do
     )
   end
 
-  it 'carries what is needed to format a backtrace' do
+  it "carries what is needed to format a backtrace" do
     exception = Exception.new
     RSpec::Core::Formatters::ExceptionPresenter.new(
       exception,
@@ -29,12 +29,12 @@ describe Flatware::RSpec::Marshalable::Example do
     ).fully_formatted(nil)
   end
 
-  it 'does not carry constant references in exceptions' do
-    const = stub_const('A::Constant::Not::Likely::Loaded::In::Sink', Class.new(RuntimeError))
-    wrapper_const = stub_const('Another::Constant::Not::Likely::Loaded::In::Sink', Class.new(RuntimeError))
+  it "does not carry constant references in exceptions" do
+    const = stub_const("A::Constant::Not::Likely::Loaded::In::Sink", Class.new(RuntimeError))
+    wrapper_const = stub_const("Another::Constant::Not::Likely::Loaded::In::Sink", Class.new(RuntimeError))
     caught_exception = begin
       begin
-        raise const, 'something bad happened'
+        raise const, "something bad happened"
       rescue RuntimeError => e
         # raise a second exception so that Exception#cause is set up
         raise wrapper_const, e

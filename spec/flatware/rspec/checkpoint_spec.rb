@@ -1,13 +1,13 @@
-require 'spec_helper'
-require 'flatware/rspec/checkpoint'
-require 'rspec/core/notifications'
+require "spec_helper"
+require "flatware/rspec/checkpoint"
+require "rspec/core/notifications"
 
 describe Flatware::RSpec::Checkpoint do
-  context 'when summed and some have errors' do
-    it 'has errors' do
+  context "when summed and some have errors" do
+    it "has errors" do
       failure_notification = instance_double(
         RSpec::Core::Example,
-        full_description: 'bad news',
+        full_description: "bad news",
         execution_result: instance_double(RSpec::Core::Example::ExecutionResult, exception: nil).as_null_object,
         location: nil,
         location_rerun_argument: nil,
@@ -31,7 +31,7 @@ describe Flatware::RSpec::Checkpoint do
     end
   end
 
-  it 'accrues deprecations' do
+  it "accrues deprecations" do
     add_deprecation = lambda do |checkpoint|
       checkpoint.deprecation(instance_double(RSpec::Core::Notifications::DeprecationNotification))
     end

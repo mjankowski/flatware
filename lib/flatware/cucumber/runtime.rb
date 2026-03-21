@@ -1,4 +1,4 @@
-require 'cucumber'
+require "cucumber"
 
 module Flatware
   module Cucumber

@@ -1,10 +1,10 @@
-require 'spec_helper'
-require 'drb'
-require 'timeout'
+require "spec_helper"
+require "drb"
+require "timeout"
 
 describe Flatware::Sink do
   let!(:sink_endpoint) do
-    server = TCPServer.new('127.0.0.1', 0)
+    server = TCPServer.new("127.0.0.1", 0)
     port = server.addr[1]
     server.close
     "druby://0.0.0.0:#{port}"
@@ -12,7 +12,7 @@ describe Flatware::Sink do
 
   let! :formatter do
     double(
-      'Formatter',
+      "Formatter",
       finished: nil,
       jobs: nil,
       progress: nil,
@@ -31,31 +31,31 @@ describe Flatware::Sink do
     }
   end
 
-  context 'there is no work' do
-    it 'summarizes' do
+  context "there is no work" do
+    it "summarizes" do
       server = described_class::Server.new jobs: [], **defaults
       server.ready(1)
       expect(formatter).to have_received :summarize
     end
   end
 
-  context 'there is outstanding work' do
-    context 'and a Result object is received' do
-      it 'prints the result' do
+  context "there is outstanding work" do
+    context "and a Result object is received" do
+      it "prints the result" do
         server = described_class::Server.new jobs: [], **defaults
-        server.progress 'progress'
+        server.progress "progress"
 
-        expect(formatter).to have_received(:progress).with 'progress'
+        expect(formatter).to have_received(:progress).with "progress"
       end
     end
   end
 
-  describe '#start_server' do
+  describe "#start_server" do
     subject do
       described_class.start_server(**defaults)
     end
 
-    context 'returns the server result' do
+    context "returns the server result" do
       before do
         allow(described_class::Server).to receive(:new).and_return(
           instance_double(described_class::Server, start: :result)
@@ -66,8 +66,8 @@ describe Flatware::Sink do
     end
   end
 
-  it 'groups jobs' do
-    files = ('a'..'z').to_a.map(&Flatware::Job.method(:new))
+  it "groups jobs" do
+    files = ("a".."z").to_a.map(&Flatware::Job.method(:new))
 
     sink = described_class::Server.new(jobs: files, worker_count: 4, **defaults)
 

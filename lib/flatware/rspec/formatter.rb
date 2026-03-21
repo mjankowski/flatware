@@ -1,6 +1,6 @@
-require 'flatware/rspec/checkpoint'
-require 'rspec/core/formatters/console_codes'
-require 'forwardable'
+require "flatware/rspec/checkpoint"
+require "rspec/core/formatters/console_codes"
+require "forwardable"
 
 module Flatware
   module RSpec

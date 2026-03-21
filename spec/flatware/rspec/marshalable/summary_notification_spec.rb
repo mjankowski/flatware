@@ -1,11 +1,11 @@
-require 'spec_helper'
-require 'flatware/rspec/marshalable/summary_notification'
+require "spec_helper"
+require "flatware/rspec/marshalable/summary_notification"
 
 describe Flatware::RSpec::Marshalable::SummaryNotification do
   let(:args1) { [1, [], [], [], 0.2, 6] }
   let(:args2) { [2, [], [], [], 0.3, 6] }
 
-  it 'can be added together (duration and load_time handled with #max)' do
+  it "can be added together (duration and load_time handled with #max)" do
     expected_result = {
       duration: 2,
       examples: [],
@@ -22,7 +22,7 @@ describe Flatware::RSpec::Marshalable::SummaryNotification do
     expect(result.to_h).to eq(expected_result)
   end
 
-  it 'plays nice with the rspec formatting stuff' do
+  it "plays nice with the rspec formatting stuff" do
     notification = RSpec::Core::Notifications::SummaryNotification.new(*args1)
     summary = described_class.from_rspec(notification)
     expect(summary.fully_formatted).to match(/Finished/)

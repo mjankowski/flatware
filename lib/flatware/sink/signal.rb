@@ -15,8 +15,8 @@ module Flatware
       def listen
         Thread.new(&method(:handle_signals))
 
-        ::Signal.trap('INT') { signals << :int }
-        ::Signal.trap('CLD') do
+        ::Signal.trap("INT") { signals << :int }
+        ::Signal.trap("CLD") do
           signals << :cld if child_failed?
         end
 
@@ -62,7 +62,7 @@ module Flatware
       end
 
       def signal_message(signal)
-        formatter.message(Message.new(format(<<~MESSAGE, { cld: 'A worker died', int: 'Interrupted' }.fetch(signal))))
+        formatter.message(Message.new(format(<<~MESSAGE, { cld: "A worker died", int: "Interrupted" }.fetch(signal))))
 
           %s!
 
@@ -71,7 +71,7 @@ module Flatware
 
         yield
 
-        formatter.message(Message.new('done.'))
+        formatter.message(Message.new("done."))
       end
 
       def signals

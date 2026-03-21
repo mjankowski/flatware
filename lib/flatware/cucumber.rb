@@ -1,9 +1,9 @@
-require 'cucumber'
-require 'flatware/cucumber/formatter'
-require 'flatware/cucumber/result'
-require 'flatware/cucumber/step_result'
-require 'flatware/cucumber/formatters/console'
-require 'flatware/cucumber/cli'
+require "cucumber"
+require "flatware/cucumber/formatter"
+require "flatware/cucumber/result"
+require "flatware/cucumber/step_result"
+require "flatware/cucumber/formatters/console"
+require "flatware/cucumber/cli"
 
 module Flatware
   module Cucumber

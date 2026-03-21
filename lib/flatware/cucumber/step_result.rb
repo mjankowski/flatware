@@ -1,4 +1,4 @@
-require 'flatware/serialized_exception'
+require "flatware/serialized_exception"
 module Flatware
   module Cucumber
     class StepResult
@@ -24,7 +24,7 @@ module Flatware
       private
 
       def serialized(err)
-        err.backtrace&.unshift(err.backtrace.shift.sub(Dir.pwd, '.'))
+        err.backtrace&.unshift(err.backtrace.shift.sub(Dir.pwd, "."))
         SerializedException.new(err.class, err.message, err.backtrace)
       end
     end

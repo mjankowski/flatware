@@ -1,4 +1,4 @@
-require 'rspec/core'
+require "rspec/core"
 
 module Flatware
   module RSpec
@@ -64,7 +64,7 @@ module Flatware
             .flat_map(&:id).sort.each_with_index
             .map do |example, index|
               format(
-                '%<index>4d) %<example>s',
+                "%<index>4d) %<example>s",
                 index: index.next,
                 example: example
               )

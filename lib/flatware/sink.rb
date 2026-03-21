@@ -1,5 +1,5 @@
-require 'drb/drb'
-require 'flatware/sink/signal'
+require "drb/drb"
+require "flatware/sink/signal"
 
 module Flatware
   module Sink

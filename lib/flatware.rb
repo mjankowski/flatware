@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
-require 'logger'
+require "logger"
 
 module Flatware
-  require 'flatware/job'
-  require 'flatware/cli'
-  require 'flatware/sink'
-  require 'flatware/worker'
-  require 'flatware/broadcaster'
+  require "flatware/job"
+  require "flatware/cli"
+  require "flatware/sink"
+  require "flatware/worker"
+  require "flatware/broadcaster"
 
   module_function
 
@@ -24,7 +24,7 @@ module Flatware
     when Exception
       logger.error message.first
     else
-      logger.info(([$PROGRAM_NAME] + message).join(' '))
+      logger.info(([$PROGRAM_NAME] + message).join(" "))
     end
     message
   end
@@ -34,6 +34,6 @@ module Flatware
   end
 
   def verbose?
-    logger.level < Logger::SEV_LABEL.index('FATAL')
+    logger.level < Logger::SEV_LABEL.index("FATAL")
   end
 end

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-require 'forwardable'
-require 'flatware/rspec/marshalable'
+require "forwardable"
+require "flatware/rspec/marshalable"
 
 module Flatware
   module RSpec

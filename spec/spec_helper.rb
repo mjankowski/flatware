@@ -1,11 +1,11 @@
-require 'pathname'
-require 'rspec'
-require 'flatware'
-require 'flatware/cucumber'
+require "pathname"
+require "rspec"
+require "flatware"
+require "flatware/cucumber"
 
 # Requires supporting files with custom matchers and macros, etc,
 # in ./support/ and its subdirectories.
-Dir[Pathname(__FILE__).dirname.join('support/**/*.rb')]
+Dir[Pathname(__FILE__).dirname.join("support/**/*.rb")]
   .each { |f| require f }
 
 RSpec.configure do |config|

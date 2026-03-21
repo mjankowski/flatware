@@ -1,8 +1,8 @@
 module Flatware
   module RSpec
     module Marshalable
-      require 'flatware/rspec/marshalable/execution_result'
-      require 'flatware/rspec/marshalable/shared_group_inclusion_backtrace'
+      require "flatware/rspec/marshalable/execution_result"
+      require "flatware/rspec/marshalable/shared_group_inclusion_backtrace"
 
       ##
       # a subset of the rspec example interface that can traverse drb

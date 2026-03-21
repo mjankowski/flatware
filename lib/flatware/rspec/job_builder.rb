@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'forwardable'
+require "forwardable"
 
 module Flatware
   module RSpec
@@ -23,7 +23,7 @@ module Flatware
         @workers = workers
 
         @configuration = ::RSpec.configuration
-        configuration.define_singleton_method(:command) { 'rspec' }
+        configuration.define_singleton_method(:command) { "rspec" }
 
         ::RSpec::Core::ConfigurationOptions.new(args).configure(@configuration)
       end
@@ -69,7 +69,7 @@ module Flatware
 
       def load_persisted_example_statuses
         ::RSpec::Core::ExampleStatusPersister.load_from(
-          example_status_persistence_file_path || ''
+          example_status_persistence_file_path || ""
         )
       end
 

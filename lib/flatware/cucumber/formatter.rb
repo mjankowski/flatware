@@ -1,6 +1,6 @@
-require 'cucumber'
-require 'flatware/sink'
-require 'ostruct'
+require "cucumber"
+require "flatware/sink"
+require "ostruct"
 
 module Flatware
   module Cucumber

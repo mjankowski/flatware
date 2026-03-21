@@ -1,1 +1,1 @@
-require 'flatware/rspec'
+require "flatware/rspec"

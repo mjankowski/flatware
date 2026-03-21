@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-require 'flatware/cucumber/formatters/console/summary'
-require 'cucumber/formatter/console'
+require "flatware/cucumber/formatters/console/summary"
+require "cucumber/formatter/console"
 
 module Flatware
   module Cucumber
@@ -11,11 +11,11 @@ module Flatware
         include ::Cucumber::Formatter::Console
 
         FORMATS = {
-          passed: '.',
-          failed: 'F',
-          undefined: 'U',
-          pending: 'P',
-          skipped: '-'
+          passed: ".",
+          failed: "F",
+          undefined: "U",
+          pending: "P",
+          skipped: "-"
         }.freeze
 
         STATUSES = FORMATS.keys
@@ -39,7 +39,7 @@ module Flatware
 
         def summarize_remaining(remaining_jobs)
           out.puts
-          out.puts 'The following features have not been run:'
+          out.puts "The following features have not been run:"
           remaining_jobs.each do |job|
             out.puts job.id
           end

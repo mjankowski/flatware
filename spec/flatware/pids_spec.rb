@@ -1,13 +1,13 @@
-require 'flatware/pid'
+require "flatware/pid"
 
-describe 'pids' do
-  context 'group pids' do
-    it 'should get all the pids of a group' do
+describe "pids" do
+  context "group pids" do
+    it "should get all the pids of a group" do
       Process.setpgrp
       group_leader_pid = Process.pid
-      $0 = 'flatware group leader'
+      $0 = "flatware group leader"
       child_pid = fork do
-        $0 = 'flatware child'
+        $0 = "flatware child"
         sleep 1
       end
       expect(

@@ -1,12 +1,12 @@
-require 'spec_helper'
+require "spec_helper"
 
 describe Flatware::Cucumber::StepResult do
-  context 'with an exception' do
+  context "with an exception" do
     let(:status) { :failed }
     let(:exception) { Exception.new }
     subject { described_class.new(status, exception) }
 
-    it 'can be serialized' do
+    it "can be serialized" do
       expect { Marshal.load(Marshal.dump(subject)) }.to_not raise_error
     end
   end

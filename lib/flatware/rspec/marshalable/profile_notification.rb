@@ -1,5 +1,5 @@
-require 'flatware/rspec/marshalable/example'
-require 'flatware/rspec/marshalable/example_group'
+require "flatware/rspec/marshalable/example"
+require "flatware/rspec/marshalable/example_group"
 
 module Flatware
   module RSpec

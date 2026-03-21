@@ -1,4 +1,4 @@
-require 'drb/drb'
+require "drb/drb"
 
 module Flatware
   module Sink

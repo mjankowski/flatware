@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'etc'
+require "etc"
 
 module Flatware
   module_function
@@ -20,11 +20,11 @@ module Flatware
     end
 
     def self.ps
-      args = ['-o', members.join(',')]
-      args += { 'Darwin' => %w[-c] }.fetch(Etc.uname.fetch(:sysname), [])
+      args = ["-o", members.join(",")]
+      args += { "Darwin" => %w[-c] }.fetch(Etc.uname.fetch(:sysname), [])
 
       IO
-        .popen(['ps', *args])
+        .popen(["ps", *args])
         .readlines
         .map do |row|
           fields = row.strip.split(/\s+/, 4)

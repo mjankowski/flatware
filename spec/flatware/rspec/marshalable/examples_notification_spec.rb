@@ -1,12 +1,12 @@
-require 'spec_helper'
-require 'flatware/rspec/marshalable/examples_notification'
+require "spec_helper"
+require "flatware/rspec/marshalable/examples_notification"
 
 describe Flatware::RSpec::Marshalable::ExamplesNotification do
-  it 'can be added together' do
+  it "can be added together" do
     failed_example = instance_double(
       RSpec::Core::Example,
       execution_result: instance_double(RSpec::Core::Example::ExecutionResult, exception: nil).as_null_object,
-      full_description: 'the example',
+      full_description: "the example",
       location_rerun_argument: nil,
       location: nil,
       metadata: {}
@@ -27,7 +27,7 @@ describe Flatware::RSpec::Marshalable::ExamplesNotification do
     end
 
     expect(notifications.reduce(:+)).to have_attributes(
-      failed_examples: [have_attributes(full_description: 'the example')]
+      failed_examples: [have_attributes(full_description: "the example")]
     )
   end
 end

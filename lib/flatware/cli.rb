@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-require 'thor'
-require 'flatware/pid'
-require 'etc'
+require "thor"
+require "flatware/pid"
+require "etc"
 
 module Flatware
   # shared flatware cli
@@ -14,38 +14,38 @@ module Flatware
     def self.worker_option
       method_option(
         :workers,
-        aliases: '-w',
+        aliases: "-w",
         type: :numeric,
         default: processors,
-        desc: 'Number of concurrent processes to run'
+        desc: "Number of concurrent processes to run"
       )
     end
 
     class_option(
       :log,
-      aliases: '-l',
+      aliases: "-l",
       type: :boolean,
-      desc: 'Print debug messages to $stderr'
+      desc: "Print debug messages to $stderr"
     )
 
     worker_option
-    desc 'fan [COMMAND]', 'executes the given job on all of the workers'
+    desc "fan [COMMAND]", "executes the given job on all of the workers"
     def fan(*command)
       Flatware.verbose = options[:log]
 
-      command = command.join(' ')
+      command = command.join(" ")
       puts "Running '#{command}' on #{workers} workers"
 
       workers.times do |i|
         fork do
-          exec({ 'TEST_ENV_NUMBER' => i.to_s }, command)
+          exec({ "TEST_ENV_NUMBER" => i.to_s }, command)
         end
       end
       success = Process.waitall.all? { |_pid, status| status.success? }
       exit success ? 0 : 1
     end
 
-    desc 'clear', 'kills all flatware processes'
+    desc "clear", "kills all flatware processes"
     def clear
       (Flatware.pids - [Process.pid]).each do |pid|
         Process.kill 6, pid
@@ -55,13 +55,13 @@ module Flatware
     private
 
     def start_sink(jobs:, workers:, formatter:)
-      $0 = 'flatware sink'
+      $0 = "flatware sink"
       try_setpgrp
 
       passed = Sink.start_server(
         jobs: jobs,
         formatter: Flatware::Broadcaster.new([formatter]),
-        sink: options['sink-endpoint'],
+        sink: options["sink-endpoint"],
         worker_count: workers
       )
       exit passed ? 0 : 1
@@ -70,7 +70,7 @@ module Flatware
     def try_setpgrp
       Process.setpgrp
     rescue Errno::EPERM => e
-      Flatware.log 'continuing after: Process.setpgrp:', e.message
+      Flatware.log "continuing after: Process.setpgrp:", e.message
     end
 
     def workers
@@ -89,7 +89,7 @@ end.compact.size
 
 if loaded_flatware_gem_count.zero?
   warn(
-    format(<<~MESSAGE, gem_list: flatware_gems.join(' or ')))
+    format(<<~MESSAGE, gem_list: flatware_gems.join(" or ")))
       The flatware gem is a dependency of flatware runners for rspec and cucumber.
       Install %<gem_list>s for more useful commands.
     MESSAGE

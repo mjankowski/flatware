@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
-require 'rspec/core'
-require 'rspec/expectations'
-require 'flatware/rspec/cli'
+require "rspec/core"
+require "rspec/expectations"
+require "flatware/rspec/cli"
 
 module Flatware
   module RSpec
-    require 'flatware/rspec/formatter'
-    require 'flatware/rspec/job_builder'
+    require "flatware/rspec/formatter"
+    require "flatware/rspec/job_builder"
 
     module_function
 

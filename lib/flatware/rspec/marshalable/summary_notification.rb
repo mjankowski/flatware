@@ -1,5 +1,5 @@
-require 'rspec/core/notifications'
-require 'flatware/rspec/marshalable/example'
+require "rspec/core/notifications"
+require "flatware/rspec/marshalable/example"
 
 module Flatware
   module RSpec

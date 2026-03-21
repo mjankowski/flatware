@@ -1,7 +1,7 @@
 module Flatware
   module RSpec
     module Marshalable
-      require 'flatware/serialized_exception'
+      require "flatware/serialized_exception"
       class ExecutionResult < ::RSpec::Core::Example::ExecutionResult
         def self.from_rspec(result)
           new.tap do |marshalable|

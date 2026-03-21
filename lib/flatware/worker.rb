@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-require 'drb/drb'
+require "drb/drb"
 
 module Flatware
-  require 'flatware/configuration'
+  require "flatware/configuration"
   # executes tests and sends results to the sink
   class Worker
     attr_reader :sink, :runner, :id
@@ -20,7 +20,7 @@ module Flatware
       count.times do |i|
         fork do
           $0 = "flatware worker #{i}"
-          ENV['TEST_ENV_NUMBER'] = i.to_s
+          ENV["TEST_ENV_NUMBER"] = i.to_s
           Flatware.configuration.after_fork.call(i)
           new(i, runner, sink).listen
         end
@@ -68,7 +68,7 @@ module Flatware
         raise if (tries += 1) >= times
 
         sleep wait
-        Flatware.log('retrying', e.message)
+        Flatware.log("retrying", e.message)
         retry
       end
     end
