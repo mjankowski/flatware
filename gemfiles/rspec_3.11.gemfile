@@ -12,9 +12,9 @@ group :development do
   gem "pry"
   gem "racc"
   gem "rake"
-  gem "rubocop", ">= 1.84.0"
   gem "rubocop-rake"
-  gem "rubocop-rspec"
+  gem "standard"
+  gem "standard-performance"
 end
 
 gemspec name: "flatware", path: "../"
