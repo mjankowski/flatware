@@ -60,7 +60,7 @@ module Flatware
           end
 
           def pluralize(word, number)
-            "#{number} #{number == 1 ? word : "#{word}s"}"
+            "#{number} #{(number == 1) ? word : "#{word}s"}"
           end
 
           def with_status(status)
