@@ -109,8 +109,7 @@ module Flatware
         Array.new(count) { [] }.tap do |groups|
           items
             .sort_by(&block)
-            .reverse
-            .each do |entry|
+            .reverse_each do |entry|
               groups.min_by do |group|
                 group.map(&block).reduce(:+) || 0
               end.push(entry)
