@@ -17,7 +17,8 @@ module Flatware
 
     def runner
       ::RSpec::Core::Runner.tap do |runner|
-        def runner.trap_interrupt() end
+        def runner.trap_interrupt
+        end
       end
     end
 
